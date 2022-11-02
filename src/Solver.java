@@ -17,7 +17,6 @@ public class Solver {
     public static int sortDesc(final int num) {
         var strnum = String.valueOf(num).toCharArray();
         Arrays.sort(strnum);
-        System.out.println(strnum);
         return Integer.parseInt(new StringBuilder(new String(strnum)).reverse().toString());
     }
     static String toCamelCase(String s){
@@ -36,8 +35,5 @@ public class Solver {
         return Integer.parseInt(Arrays.stream(toStr.split(""))
                 .map(p -> String.valueOf(Integer.parseInt(p) * Integer.parseInt(p)))
                 .collect(Collectors.joining()));
-    }
-    public static void main(String[] args) {
-        System.out.println(squareDigits(9119));
     }
 }
