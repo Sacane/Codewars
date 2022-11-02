@@ -7,7 +7,6 @@ public class Solver {
     public static String disemvowel(String str) {
         return str.replaceAll("[aeiouy]", "");
     }
-
     public static String toJadenCase(String phrase) {
         Objects.requireNonNull(phrase);
         if(phrase.equals("")){
@@ -15,18 +14,11 @@ public class Solver {
         }
         return Arrays.stream(phrase.split(" ")).map(s -> s.substring(0, 1).toUpperCase().concat(s.substring(1))).collect(Collectors.joining(" "));
     }
-
     public static int sortDesc(final int num) {
         var strnum = String.valueOf(num).toCharArray();
         Arrays.sort(strnum);
         System.out.println(strnum);
         return Integer.parseInt(new StringBuilder(new String(strnum)).reverse().toString());
-    }
-
-
-    public static long findNextSquare(long sq) {
-        var root = Math.sqrt(sq);
-        return ((long)Math.pow(root + 0.5, 2) == sq) ? (long) Math.pow(root + 1, 2) : -1;
     }
     static String toCamelCase(String s){
         Objects.requireNonNull(s);
@@ -45,7 +37,6 @@ public class Solver {
                 .map(p -> String.valueOf(Integer.parseInt(p) * Integer.parseInt(p)))
                 .collect(Collectors.joining()));
     }
-
     public static void main(String[] args) {
         System.out.println(squareDigits(9119));
     }
