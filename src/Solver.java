@@ -1,6 +1,9 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
 public class Solver {
@@ -35,5 +38,34 @@ public class Solver {
         return Integer.parseInt(Arrays.stream(toStr.split(""))
                 .map(p -> String.valueOf(Integer.parseInt(p) * Integer.parseInt(p)))
                 .collect(Collectors.joining()));
+    }
+    public static int duplicateCount(String text) {
+        var res = new ArrayList<String>();
+
+        IntStream.range(0, text.length()).forEach(c -> {
+            if(c < text.length() - 1){
+                String tmp = text.substring(c, c + 1);
+                if(text.substring(c + 1).toUpperCase().contains(tmp.toUpperCase()) && !res.contains(tmp.toUpperCase())){
+                    res.add(tmp.toUpperCase());
+                }
+            }
+        });
+        return res.size();
+    }
+    public static String encode(String word){
+        var tolower = word.toLowerCase();
+        return Arrays.stream(tolower.split(""))
+                .map(p -> {
+                  if(tolower.substring(0, tolower.indexOf(p)).concat(tolower.substring(tolower.indexOf(p) + 1)).contains(p)){
+                      return ")";
+                  } else {
+                      return "(";
+                  }
+                }).collect(Collectors.joining());
+    }
+
+    public static void main(String[] args) {
+        System.out.println(encode("Prespecialized"));
+        System.out.println("Prespecialized".substring(0, 3).concat("Prespecialized".substring(4)));
     }
 }
