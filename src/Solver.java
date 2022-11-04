@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -53,10 +54,10 @@ public class Solver {
         return res.size();
     }
     public static String encode(String word){
-        var tolower = word.toLowerCase();
-        return Arrays.stream(tolower.split(""))
+        var toLower = word.toLowerCase();
+        return Arrays.stream(toLower.split(""))
                 .map(p -> {
-                  if(tolower.substring(0, tolower.indexOf(p)).concat(tolower.substring(tolower.indexOf(p) + 1)).contains(p)){
+                  if(toLower.substring(0, toLower.indexOf(p)).concat(toLower.substring(toLower.indexOf(p) + 1)).contains(p)){
                       return ")";
                   } else {
                       return "(";
@@ -64,6 +65,12 @@ public class Solver {
                 }).collect(Collectors.joining());
     }
 
+    public static String order(String words) {
+        return Arrays.stream(words.split(" "))
+                .sorted(Comparator.comparing(s -> Integer.parseInt(s.replaceAll("\\D", ""))))
+                .collect(Collectors.joining(" "));
+
+    }
     public static void main(String[] args) {
         System.out.println(encode("Prespecialized"));
         System.out.println("Prespecialized".substring(0, 3).concat("Prespecialized".substring(4)));
